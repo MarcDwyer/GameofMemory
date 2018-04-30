@@ -1,14 +1,64 @@
 /*
- * Create a list that holds all of your cards
+ * Match = When card Matches
+ open show = when card is clicked
  */
+const openShow = document.getElementsByClassName('open show');
+const lists = document.getElementById('decks');
+const cards = document.getElementsByClassName('card');
+const fafa = document.getElementsByClassName('fa fa');
+const everything = $('.open show .fa fa');
+const ogArray = [].map.call(cards, function (el) {
+  return el;
+});
+const truffle = shuffle(ogArray);
+const cardList = document.getElementsByTagName('li');
+
+function removeList() {
+  for (let x = 0; x < 33; x++) {
+    lists.removeChild(lists.childNodes[0]);
+  }
+}
+
+function addList() {
+  for (let x = 0; x < truffle.length; x++) {
+  lists.appendChild(truffle[x]);
+}
+}
+removeList();
+addList();
+addclicks();
+
+function addclicks() {
+for (let z = 0; z < truffle.length; z++) {
+  $(truffle[z]).on('click', function() {
+    $(truffle[z]).addClass(' open show');
+    console.log('truffle clicks have been applied');
+    noMatch();
+  })
+  }
+}
+
+function noMatch() {
+  if (openShow.length == 3) {
+    for (let n = 0; n < truffle.length; n++) {
+      $(truffle[n]).off('click');
+      }
+      setTimeout(function(){
+      $(openShow).removeClass(' open show');
+      addclicks(); }, 3000)
+    }
+  }
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
+function match() {
+  if (openShow.length == 3) {
+  const one = openShow[0].childNodes[1].className;
+  const two = openShow[1].childNodes[1].className;
+  const three = openShow[2].childNodes[1].className;
+  console.log(one + two + three);
+}
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -24,15 +74,3 @@ function shuffle(array) {
 
     return array;
 }
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
