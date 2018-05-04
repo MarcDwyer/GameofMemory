@@ -5,6 +5,9 @@
 let theCount = 3;
 let probe = 0;
 let starcounter = 0;
+let seconds = 1;
+let zero = 0;
+let minute = 0;
 const openShow = document.getElementsByClassName('open show');
 const lists = document.getElementById('decks');
 const matches = document.getElementsByClassName('match');
@@ -15,6 +18,7 @@ const reload = document.getElementsByClassName('fa fa-repeat');
 const ogArray = [].map.call(cards, function(el) {
   return el;
 });
+
 
 const truffle = shuffle(ogArray);
 
@@ -35,6 +39,7 @@ function addList() {
   for (let x = 0; x < truffle.length; x++) {
     lists.appendChild(truffle[x]);
   }
+
   counter();
 }
 reloader();
@@ -72,6 +77,9 @@ function addclicks() {
   for (let z = 0; z < truffle.length; z++) {
     $(truffle[z]).on('click', function() {
       $(truffle[z]).addClass(' open show');
+      if (openShow.length == 1) {
+        timerTime();
+      }
       if (openShow.length == 3) {
         match();
 
@@ -154,6 +162,32 @@ function restart() {
   probe = 0;
   removeList();
 }
+function timerTime() {
+if (zero < 1) {
+  if (seconds <= 60) {
+  const intName = setInterval(function() {
+      $('.timers').text(minute + ':' + seconds);
+      seconds++;
+      if (seconds == 60) {
+        seconds = 0;
+        minute++;
+      }
+      }, 1000);
+    } else {
+      clearInterval(intName);
+      minutes++;
+      const weinerTime = setInterval(function() {
+          $('.timers').text(minutes + ':' + seconds);
+          seconds++;
+          }, 1000);
+
+
+    }
+}
+zero++;
+}
+
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
   var currentIndex = array.length,
