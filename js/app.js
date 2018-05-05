@@ -172,9 +172,9 @@ function timerTime() {
         if (matches.length == 2) {
           clearInterval(intName);
         }
-      if (probe == 3)
+      if (probe >= 3) {
       clearInterval(intName);
-
+    }
       }, 1000);
     }
   }
