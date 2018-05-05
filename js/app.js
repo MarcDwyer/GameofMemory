@@ -18,25 +18,25 @@ const ogArray = [].map.call(cards, function(el) {
   return el;
 });
 
-
+/* Shuffles the Array of li elements*/
 const truffle = shuffle(ogArray);
 
 reloader();
 removeList();
 
-
+/* Makes the refresh button refresh */
 function reloader() {
   $('.restart').on('click', function() {
     location.reload();
   })
 }
-
+/* Makes the ul element empty*/
 function removeList() {
   console.log('removeList running')
   $('.ul').innerHTML = '';
   addList();
 }
-
+/* Adds the new Array to the ul element */
 function addList() {
   console.log('addlist running');
   for (let x = 0; x < truffle.length; x++) {
@@ -48,7 +48,7 @@ function addList() {
 
 const lose = document.createElement('span');
 const clicklose = document.createElement('span');
-
+/* Determines whether or not the User has won or lost */
 function counter() {
   console.log('P is ' + probe);
   if (probe < 3) {
@@ -70,7 +70,7 @@ function counter() {
 }
 
 
-
+/* Adds a Click event listener to cards */
 function addclicks() {
   console.log('Clicks Running');
   for (let z = 0; z < truffle.length; z++) {
@@ -87,7 +87,7 @@ function addclicks() {
   }
 }
 
-
+/* Looks for a match and allows user time to memorize which cards were picked (if cards didnt match) */
 function match() {
   console.log('Matches running...');
   const one = openShow[0].childNodes[1];
@@ -127,7 +127,7 @@ const contained = document.getElementById('container');
 const clickhere = document.createElement('span');
 const timerBox = document.createElement('span');
 
-
+/* If the cards match this is run */
 function won() {
   for (let n = 0; n < truffle.length; n++) {
     $(truffle[n]).off('click');
@@ -146,26 +146,19 @@ function won() {
     location.reload();
   })
 }
-
+/* Removes the Stars after each move */
 function removeStars() {
   for (let x = 0; x < 2; x++) {
     sun.removeChild(sun.childNodes[0]);
   }
 }
-
+/* Tells the user how many moves they have left */
 function editNumber() {
   $(mover).text(theCount);
   theCount--;
 
 }
-
-function restart() {
-  contained.removeChild(winner);
-  contained.removeChild(clickhere);
-  probe = 0;
-  removeList();
-}
-
+/* A timer I made from scratch */
 function timerTime() {
   if (zero < 1) {
     if (seconds <= 60) {
@@ -179,6 +172,9 @@ function timerTime() {
         if (matches.length == 2) {
           clearInterval(intName);
         }
+      if (probe == 3)
+      clearInterval(intName);
+
       }, 1000);
     }
   }
