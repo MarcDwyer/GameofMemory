@@ -13,7 +13,6 @@ const lists = document.getElementById('decks');
 const matches = document.getElementsByClassName('match');
 const cards = document.getElementsByClassName('card');
 const fafa = document.getElementsByClassName('fa fa');
-const help = document.getElementsByClassName('stars');
 const reload = document.getElementsByClassName('fa fa-repeat');
 const ogArray = [].map.call(cards, function(el) {
   return el;
@@ -21,6 +20,10 @@ const ogArray = [].map.call(cards, function(el) {
 
 
 const truffle = shuffle(ogArray);
+
+reloader();
+removeList();
+
 
 function reloader() {
   $('.restart').on('click', function() {
@@ -42,10 +45,6 @@ function addList() {
 
   counter();
 }
-reloader();
-removeList();
-
-
 
 const lose = document.createElement('span');
 const clicklose = document.createElement('span');
@@ -126,16 +125,20 @@ function match() {
 const winner = document.createElement('span');
 const contained = document.getElementById('container');
 const clickhere = document.createElement('span');
+const timerBox = document.createElement('span');
+
 
 function won() {
   for (let n = 0; n < truffle.length; n++) {
     $(truffle[n]).off('click');
   }
   winner.textContent += 'You Won!';
-  clickhere.textContent += 'Click to Play Again!'
+  clickhere.textContent += 'Click to Play Again!';
+  timerBox.textContent = 'Won in ' + minute + ' minutes and ' + seconds + ' seconds.'
   $(winner).css('font-size', '44px');
   contained.appendChild(winner);
   contained.appendChild(clickhere);
+  contained.appendChild(timerBox)
   $(winner).on('click', function() {
     $(openShow).removeClass(' open show');
     $(matches).removeClass(' match');
@@ -162,29 +165,24 @@ function restart() {
   probe = 0;
   removeList();
 }
+
 function timerTime() {
-if (zero < 1) {
-  if (seconds <= 60) {
-  const intName = setInterval(function() {
-      $('.timers').text(minute + ':' + seconds);
-      seconds++;
-      if (seconds == 60) {
-        seconds = 0;
-        minute++;
-      }
+  if (zero < 1) {
+    if (seconds <= 60) {
+      const intName = setInterval(function() {
+        $('.timers').text(minute + ':' + seconds);
+        seconds++;
+        if (seconds == 60) {
+          seconds = 0;
+          minute++;
+        }
+        if (matches.length == 2) {
+          clearInterval(intName);
+        }
       }, 1000);
-    } else {
-      clearInterval(intName);
-      minutes++;
-      const weinerTime = setInterval(function() {
-          $('.timers').text(minutes + ':' + seconds);
-          seconds++;
-          }, 1000);
-
-
     }
-}
-zero++;
+  }
+  zero++;
 }
 
 
