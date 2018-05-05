@@ -58,16 +58,14 @@ function counter() {
   } else {
     editNumber();
     lose.innerText += 'You lose!'
-    clicklose.innerText += 'Click to play again!';
     contained.appendChild(lose);
-    contained.appendChild(clicklose);
     $(lose).css('font-size', '44px');
-    $(lose).on('click', function() {
+    setTimeout(function() {
       location.reload();
-
-    })
-  }
+    }, 2000)
 }
+  }
+
 
 
 /* Adds a Click event listener to cards */
@@ -79,7 +77,7 @@ function addclicks() {
       if (openShow.length == 1) {
         timerTime();
       }
-      if (openShow.length == 3) {
+      if (openShow.length == 2) {
         match();
 
       }
@@ -92,24 +90,11 @@ function match() {
   console.log('Matches running...');
   const one = openShow[0].childNodes[1];
   const two = openShow[1].childNodes[1];
-  const three = openShow[2].childNodes[1];
   if (one.className == two.className) {
     $(one).removeClass('card open show');
     $(one).addClass('card match');
     $(two).removeClass('card open show');
     $(two).addClass('card match');
-    won();
-  } else if (one.className == three.className) {
-    $(one).removeClass('card open show');
-    $(one).addClass('card match');
-    $(three).removeClass('card open show');
-    $(three).addClass('card match');
-    won();
-  } else if (two.className == three.className) {
-    $(two).removeClass('card open show');
-    $(two).addClass('card match');
-    $(three).removeClass('card open show');
-    $(three).addClass('card match');
     won();
   } else {
     for (let n = 0; n < truffle.length; n++) {
