@@ -7,6 +7,7 @@ let probe = 0;
 let starcounter = 0;
 let seconds = 1;
 let zero = 0;
+let timerend = 0;
 let minute = 0;
 const openShow = document.getElementsByClassName('open show');
 const lists = document.getElementById('decks');
@@ -62,7 +63,7 @@ function counter() {
     $(lose).css('font-size', '44px');
     setTimeout(function() {
       location.reload();
-    }, 2000)
+    }, 2000);
 }
   }
 
@@ -70,7 +71,7 @@ function counter() {
 
 /* Adds a Click event listener to cards */
 function addclicks() {
-  console.log('Clicks Running');
+
   for (let z = 0; z < truffle.length; z++) {
     $(truffle[z]).on('click', function() {
       $(truffle[z]).addClass(' open show');
@@ -79,10 +80,9 @@ function addclicks() {
       }
       if (openShow.length == 2) {
         match();
-
-      }
-    })
-  }
+    }
+  })
+}
 }
 
 /* Looks for a match and allows user time to memorize which cards were picked (if cards didnt match) */
@@ -157,7 +157,7 @@ function timerTime() {
         if (matches.length == 2) {
           clearInterval(intName);
         }
-      if (probe >= 3) {
+      if (probe > 3) {
       clearInterval(intName);
     }
       }, 1000);
