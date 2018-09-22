@@ -1,0 +1,19 @@
+{
+  "name": "mem",
+  "version": "1.0.0",
+  "description": "## Table of Contents",
+  "main": "jquery-3.3.1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcDwyer/GameofMemory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcDwyer/GameofMemory/issues"
+  },
+  "homepage": "https://github.com/MarcDwyer/GameofMemory#readme"
+}
